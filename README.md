@@ -19,7 +19,7 @@ to run an application type the following command in your terminal:
 ```
 npm run dev
 ```
-and type localhost:8080 in your browser 
+after that, type localhost:8080 in your browser 
 
 
 ### Getting Started
