@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-const generateAntWinLikelihoodCalculator = require('../algorithm');
+import generateAntWinLikelihoodCalculator from'../algorithm';
 const { createApolloFetch } = require('apollo-fetch');
 const apolloFetch = createApolloFetch({
   uri: 'https://antserver-blocjgjbpw.now.sh/graphql',
@@ -29,7 +29,7 @@ export default class App extends Component {
   }
 
   callback(index) {
-    const { ants, counter } = this.state;
+    const { ants } = this.state;
     //use index to find ant and update ant testing state
     const currAnts = [...ants];
     currAnts[index].singleTest = 'In Progress';
@@ -37,17 +37,16 @@ export default class App extends Component {
     this.setState({ ants: currAnts });//set updated ants array to state
 
     return (score) => {
-       const { counter } = this.state;
       //assign score to ant and update testing state
       //use counter to determine when all ant calculations are completed
       currAnts[index].score = score;
       currAnts[index].singleTest = 'Test Calculated';
       this.setState({
         ants: currAnts,
-        counter: counter + 1 //increment counter in state
+        counter: this.state.counter + 1 //increment counter in state
       });
       //when counter equals ants array length, all calculations have completed, terminate testing process
-      if (counter === ants.length) {
+      if (this.state.counter === this.state.ants.length) {
         this.setState({
           allTests: 'calculated',
           counter: 0
@@ -79,12 +78,12 @@ export default class App extends Component {
                     <th className="col-names" scope="col">Color</th>
                     <th className="col-names" scope="col">Length</th>
                     <th className="col-names" scope="col">Progress</th>
-                    <th className="col-names" scope="col">Scores</th>
+                    <th className="col-names" scope="col">Chance of Winning</th>
                   </tr>
                 </thead>
                 {
                   ants.sort(function (a, b) {
-                    return b.score < a.score;   // <== compare numeric values
+                    return b.score > a.score;   // <== compare numeric values
                   })
                     .map((single, index) => {
                       return (
@@ -97,7 +96,12 @@ export default class App extends Component {
                             <td className="ant-info" id="color">{single.color}</td>
                             <td className="ant-info" id="length">{single.length}</td>
                             <td className="ant-info" id="progress">{single.singleTest}</td>
-                            <td className="ant-info" id="scores">{single.score}</td>
+                             {isNaN(single.score) === true ?
+                            <td className="ant-info" id="scores">
+                            {single.score}</td>
+                            :
+                             <td className="ant-info" id="scores">
+                            {(single.score * 100).toFixed(2)}%</td> }
                           </tr>
                         </tbody>
                       )
