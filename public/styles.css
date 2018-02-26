@@ -12,7 +12,7 @@ table, tr {
   border: 0.5px solid #D9D9D9;
 }
 .table {
-    width: 72%;
+    width: 82%;
     max-width: 100%;
     margin-bottom: 0px !important;
     background-color: white;
@@ -85,13 +85,19 @@ div#ants-flex {
 }
 
 
+.table>caption+thead>tr:last-child>td, .table>caption+thead>tr:last-child>th, .table>colgroup+thead>tr:last-child>td, .table>colgroup+thead>tr:last-child>th, .table>thead:last-child>tr:last-child>td, .table>thead:last-child>tr:last-child>th:last-child {
+    border-top: 0;
+    padding-left: 21px !important;
+    font-weight: 500 !important;
+}
+
 div#overall-test {
     background-color: #62A0CE;
     margin-bottom: 0px;
     padding: 6px;
     padding-bottom: 10px;
-    width: 72%;
-    min-width: 366px;
+    width: 82%;
+    min-width: 266px;
     font-weight: 200;
     text-align: CENTER;
     margin-bottom: 20px;
@@ -102,6 +108,97 @@ div#overall-test {
 }
 
 
+
+
+
+
+
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr { border: 1px solid #ccc; }
+
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	*/
+
+	td:nth-of-type(1):before { content: "Name "; font-weight: 500 !important; }
+	td:nth-of-type(2):before { content: "Weight"; font-weight: 500 !important; }
+	td:nth-of-type(3):before { content: "Color"; font-weight: 500 !important; text-transform: capitalize;}
+	td:nth-of-type(4):before { content: "Length";font-weight: 500 !important; }
+  	td:nth-of-type(5):before { content: "Progress";font-weight: 500 !important; }
+
+    td:nth-of-type(6):before { content: "Score";  font-weight: 500 !important;}
+
+td.ant-info {
+    padding-left: 115px;
+}
+
+td#name {
+     padding: 0px;
+     padding-left: 155px;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    padding-left: 155px;
+    border-top: 1px solid #ddd;
+}
+.table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th:first-child {
+
+    font-weight: 500 !important;
+
+}
+th.col-names {
+  font-weight: 500;
+
+}
+td#name {
+    padding-top: 9px;
+    padding-bottom: 11px;
+}
+.table>tbody+tbody, .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+     border-top: hidden !important;
+}
+
+
+
+button {
+    margin-bottom: 20px;
+}
+}
 
 
 
