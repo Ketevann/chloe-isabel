@@ -18,52 +18,52 @@ export default class App extends Component {
     //request ant data from api
     apolloFetch({ query: '{ants {name, weight, length, color }}' })
       .then(res => {
-        const { ants } = res.data
-        const antsArr = []
+        const { ants } = res.data;
+        const antsArr = [];
         //create characteristics object for each ant and set to state
         ants.forEach(ant => {
           antsArr.push({ name: ant.name, weight: ant.weight, color: ant.color, length: ant.length, score: null, singleTest: 'not yet started' })
-        })
-        this.setState({ ants: antsArr })
+        });
+        this.setState({ ants: antsArr });
       })
   }
 
   callback(index) {
     const { ants, counter } = this.state;
     //use index to find ant and update ant testing state
-    const currAnts = [...ants]
-    currAnts[index].singleTest = 'in progress'
-    this.setState({ ants: currAnts })//set updated ants array to state
+    const currAnts = [...ants];
+    currAnts[index].singleTest = 'in progress';
+    this.setState({ ants: currAnts });//set updated ants array to state
 
     return (score) => {
       //assign score to ant and update testing state
       //use counter to determine when all ant calculations are completed
-      currAnts[index].score = score
-      currAnts[index].singleTest = 'calculated'
+      currAnts[index].score = score;
+      currAnts[index].singleTest = 'calculated';
       this.setState({
         ants: currAnts,
         counter: counter + 1 //increment counter in state
-      })
+      });
       //when counter equals ants array length, all calculations have completed, terminate testing process
       if (counter === ants.length) {
         this.setState({
           allTests: 'calculated',
           counter: 0
-        })
+        });
       }
     }
   }
 
   calculate() {
     //update overall testing state
-    this.setState({ allTests: 'in progress' })
+    this.setState({ allTests: 'in progress' });
     //Map ants array and calculate their likelyhood of winning
     this.state.ants.forEach((eachAnt, index) => {
       generateAntWinLikelihoodCalculator()(this.callback(index))
     })
   }
   render() {
-    const { ants } = this.state
+    const { ants } = this.state;
     return (
       <div>
         {ants.length > 0 ?
@@ -100,7 +100,6 @@ export default class App extends Component {
                     })
                 }
               </table>
-
             <div id="button">
               <button onClick={() => this.calculate()}>Start</button>
           </div>
