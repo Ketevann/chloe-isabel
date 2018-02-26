@@ -1,17 +1,14 @@
-# chloe-isabel
+# Chloe + Isabel
 
-# Project Title
-
-One Paragraph of project description goes here
 
 ### Installing
 
-to install all packages type the following command in your terminal
+to install all packages type the following command in your terminal:
 
 ```
 npm install
 ```
-to run an application type the following command in your terminal
+to run an application type the following command in your terminal:
 
 ```
 npm run dev
