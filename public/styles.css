@@ -59,7 +59,7 @@ th.col-names {
 
 }
 
-th#name {
+td#name {
     padding: 12px;
     padding-left: 25px;
 }
@@ -91,7 +91,7 @@ div#overall-test {
     padding: 6px;
     padding-bottom: 10px;
     width: 72%;
-    min-width: 346px;
+    min-width: 363px;
     font-weight: 200;
     text-align: CENTER;
     margin-bottom: 20px;
