@@ -9,7 +9,7 @@ export default class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { ants: [], allTests: 'not started', counter: 0 }
+    this.state = { ants: [], allTests: 'not started', counter: 0 };
     this.calculate = this.calculate.bind(this);
     this.callback = this.callback.bind(this);
   }
